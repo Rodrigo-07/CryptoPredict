@@ -1,0 +1,15 @@
+{
+ "argv": [
+  "D:\\Repos\\CryptoPredict\\src\\venv\\Scripts\\python.exe",
+  "-Xfrozen_modules=off",
+  "-m",
+  "ipykernel_launcher",
+  "-f",
+  "{connection_file}"
+ ],
+ "display_name": "venv_kernel",
+ "language": "python",
+ "metadata": {
+  "debugger": true
+ }
+}
