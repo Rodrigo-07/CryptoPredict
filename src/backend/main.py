@@ -7,14 +7,12 @@ import os
 
 static_dir = os.path.join(os.getcwd(), "frontend", "static")
 
-print(static_dir)
+print(f'Static dir: {static_dir}')
 
 app = FastAPI()
 
 
-templates = Jinja2Templates(directory="/code/frontend/templates")
-
-app.mount("/static", StaticFiles(directory="/code/frontend/static"), name="static")
+templates = Jinja2Templates(directory="frontend/templates")
 
 # Incluindo as rotas
 app.include_router(prediction.router)
