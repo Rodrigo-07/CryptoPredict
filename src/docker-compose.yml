@@ -3,7 +3,7 @@ version: "3.8"
 services:
   backend:
     build:
-      context: ./src/backend  # Caminho para o Dockerfile dentro de src/backend
+      context: ./src/backend  # Caminho correto para o backend
     container_name: fastapi-backend
     ports:
       - "8000:8000"  # Mapear a porta do container para o host
