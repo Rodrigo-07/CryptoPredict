@@ -3,7 +3,7 @@ from datetime import datetime
 
 # Conectar ao MongoDB rodando no Docker
 def get_database():
-    client = MongoClient("mongodb://localhost:27017/")
+    client = MongoClient("mongodb://mongo:27017/")
     return client['model_logs_db']
 
 # Funções CRUD para Logs
