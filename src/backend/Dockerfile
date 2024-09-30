@@ -1,5 +1,5 @@
-# Usar imagem oficial do Python 3.10
-FROM python:3.10-slim
+# Usar imagem oficial do Python 3.12
+FROM python:3.12-alpine
 
 # Definir diretório de trabalho no container
 WORKDIR /app
