@@ -4,6 +4,8 @@
 
 Esse projeto fei feito para uma atividade ponderada, do curso de engenharia da computação na Inteli, no ano de 2024. O projeto consiste em prever o preço de uma criptomoeda, utilizando séries temporais.
 
+Vídeo de demonstração: [Link](https://youtu.be/gxo0CJ2FP6E)
+
 # Análise Exploratória 
 
 ## Análise 1
@@ -291,7 +293,11 @@ Para facilitar a utilização do modelo, eu criei uma aplicação web utilizando
 
 A aplicação web tem duas rotas principais, uma para retreinar o modelo e outra para fazer a previsão dos próximos dias.
 
+Para retreinar o modelo, eu implementei um fluxo que pega os dados de uma API e treina o modelo com esses dados baseado nas datas que o usuário escolher. Após criação do modelo, ele é salvo no banco de dados mongoDB.
+
 Na aplicação, você pode escolher a criptomoeda que deseja prever, o modelo entre LSTM e GRU, e o número de dias que deseja prever. Assim, aparecerá um gráfico interativo com a previsão dos próximos dias.
+
+Para fazer uma previsão basta acessar a rota get `/predict` e preencher com a moeda que deseja prever, o modelo e o número de dias que deseja prever. Para treinar o modelo, basta acessar a rota get `/retrain_model` e preencher com a moeda que deseja prever, a data de início e fim que deseja treinar o modelo, o modelo e o numero de epochs.
 
 O banco de dados foi utilizado para armazenar os modelos treinados e o longs do sistema. Exemplo de log:
 
@@ -327,6 +333,7 @@ O banco de dados foi utilizado para armazenar os modelos treinados e o longs do 
 }
 
 ```
+Para pegar os logs, basta acessar a rota get `/logs`.
 
 Eu dockerizei a aplicação para facilitar a execução. Para rodar a aplicação, basta rodar o comando `docker-compose up --build` na pasta src do projeto.
 

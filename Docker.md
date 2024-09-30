@@ -6,6 +6,8 @@ Docker é uma plataforma de código aberto que permite automatizar a implantaç�
 
 Este projeto utiliza Docker para isolar dois serviços principais: o backend e o banco de dados MongoDB, facilitando a execução em diferentes ambientes com configurações consistentes.
 
+Vídeo de demonstração: [Link](https://youtu.be/gxo0CJ2FP6E)
+
 ## Docker Backend
 
 O Dockerfile do backend configura o ambiente para rodar uma aplicação FastAPI. Ele define a imagem base do Python 3.10, instala as dependências a partir do arquivo `requirements.txt`, copia os arquivos do projeto e expõe a porta 8000 para que o FastAPI seja executado.
