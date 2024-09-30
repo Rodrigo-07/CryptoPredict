@@ -5,7 +5,7 @@ from sklearn.preprocessing import MinMaxScaler
 from datetime import timedelta
 from tensorflow.keras.models import load_model
 
-def predict_lstm(next_days, coin, model_path='D:/Repos/CryptoPredict/src/Modelo/model_new_feat_gru.h5'):
+def predict_lstm(next_days, coin, model_path='D:/Repos/CryptoPredict/src/Modelo/model_new_feat_lstm.h5'):
     # Carregar o modelo salvo
     model = load_model(model_path)
 
@@ -15,15 +15,20 @@ def predict_lstm(next_days, coin, model_path='D:/Repos/CryptoPredict/src/Modelo/
     # Carregar o dataset
     df = pd.read_csv("D:/Repos/CryptoPredict/src/Modelo/df_feat_not_scaled.csv")
     
+    print("Dados originais:")
     print(df.head())
     
-    # Definir o scaler e aplicar o fit nos dados para manter consistência entre colunas
-    scale = MinMaxScaler()
-
-    # Colunas que precisam ser escalonadas
+    # Criar um scaler individual para cada coluna
+    scalers = {}
     columns_to_scale = ['BTC Price', 'Nasdaq Price', 'Nasdaq Crypto Price', 'Crypto Fear & Greed Index', 'VIX Index', 'Solana Price']
-    df[columns_to_scale] = scale.fit_transform(df[columns_to_scale])
     
+    scaler = MinMaxScaler()
+    
+    # Aplicar o MinMaxScaler individualmente para cada coluna
+    for col in columns_to_scale:
+        df[col] = scaler.fit_transform(df[[col]])  # Normalizar a coluna individualmente
+    
+    print("Dados normalizados:")
     print(df.head())
 
     # Preparar a última sequência para a previsão (usando o número de steps definidos no treinamento do modelo)
@@ -39,8 +44,8 @@ def predict_lstm(next_days, coin, model_path='D:/Repos/CryptoPredict/src/Modelo/
         # Prever o próximo valor
         predicted_price = model.predict(last_sequence_expanded)
 
-        # Adicionar a previsão à lista
-        predictions_future.append(predicted_price[0, 0])  # Previsão de Solana Price
+        # Adicionar a previsão à lista (prevendo apenas 'Solana Price')
+        predictions_future.append(predicted_price[0, 0])
 
         # Atualizar a sequência (remover o primeiro dia e adicionar a previsão no final)
         last_sequence = np.vstack([last_sequence[1:], np.concatenate([last_sequence[-1][:-1], predicted_price[0]])])
@@ -50,7 +55,7 @@ def predict_lstm(next_days, coin, model_path='D:/Repos/CryptoPredict/src/Modelo/
     dummy_array[:, -1] = predictions_future  # Preencher a última coluna (Solana Price) com as previsões
 
     # Inverter a transformação apenas para a coluna 'Solana Price'
-    predictions_future_inversed = scale.inverse_transform(dummy_array)[:, -1]  # Pega apenas a coluna da previsão
+    predictions_future_inversed = scaler.inverse_transform(dummy_array)[:, -1]  # Inverter usando o scaler de Solana Price
 
     # Gerar as datas futuras para cada previsão
     last_date = pd.to_datetime('today')

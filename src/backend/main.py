@@ -1,11 +1,12 @@
 from fastapi import FastAPI
-from routers import prediction, training
+from routers import prediction, training, database
 
 app = FastAPI()
 
 # Incluindo as rotas
 app.include_router(prediction.router)
 app.include_router(training.router)
+app.include_router(database.router)
 
 # Código para rodar a aplicação
 
