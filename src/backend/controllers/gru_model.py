@@ -8,7 +8,7 @@ from backend.controllers.database import create_log
 
 
 
-def predict_gru(next_days, coin, model_path='D:/Repos/CryptoPredict/src/Modelo/model_new_feat_gru.h5'):
+def predict_gru(next_days, coin, model_path='model_new_feat_gru.h5'):
     # Carregar o modelo salvo
     model = load_model(model_path)
 
@@ -16,7 +16,7 @@ def predict_gru(next_days, coin, model_path='D:/Repos/CryptoPredict/src/Modelo/m
     prediction_days = next_days
 
     # Carregar o dataset com as datas
-    df = pd.read_csv("D:/Repos/CryptoPredict/src/Modelo/df_feat_not_scaled.csv", parse_dates=['Date'], index_col='Date')
+    df = pd.read_csv("df_feat_not_scaled.csv", parse_dates=['Date'], index_col='Date')
     
     # Criar um scaler individual para cada coluna
     columns_to_scale = ['BTC Price', 'Nasdaq Price', 'Nasdaq Crypto Price', 'Crypto Fear & Greed Index', 'VIX Index', 'Solana Price']
