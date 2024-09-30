@@ -131,7 +131,6 @@ docker-compose up --build
 
 Este comando cria e inicia os contêineres do backend e do MongoDB, permitindo que a aplicação seja acessada em `http://localhost:8000`.
 
+# Justificativa de não utilziar um data lake
 
-
-
-
+A utilização de um data lake não é necessária para este projeto, pois o volume de dados é pequeno e a aplicação não requer armazenamento de dados em larga escala. Além disso, todos os dados que eu uso, Indexes e valores de moeda, são obtidos de APIs externas e não precisam ser armazenados em um data lake.
