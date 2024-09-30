@@ -47,4 +47,8 @@ Com o modelo treinado, eu fiz a previsão dos dados de teste e plotei o gráfico
 
 Como podemos ver, o modelo conseguiu prever bem o comportamento da moeda e obteve um MSE de 66.6 no conjunto de teste.
 
-Apesar desse resultado, quando vamos prever o valor dos próximos
+Apesar desse resultado, quando vamos prever o valor dos próximos, quando vamos prever o valor dos próximos dias ele não apresenta um resultado confiável e consistente.
+
+![alt text](image-2.png)
+
+Para facilitar testes eu criei uma classe chamada `CryptoPredicter` que encapsula o modelo e facilita a previsão de novos valores.

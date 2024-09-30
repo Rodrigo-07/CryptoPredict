@@ -7,9 +7,9 @@ from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 
 
-templates = Jinja2Templates(directory="frontend/templates")
+templates = Jinja2Templates(directory="/code/frontend/templates")
 
-app.mount("/static", StaticFiles(directory="frontend/static"), name="static")
+app.mount("/static", StaticFiles(directory="/code/frontend/static"), name="static")
 
 # Incluindo as rotas
 app.include_router(prediction.router)
