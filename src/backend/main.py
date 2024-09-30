@@ -3,6 +3,11 @@ from backend.routers import prediction, database
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
+import os
+
+static_dir = os.path.join(os.getcwd(), "frontend", "static")
+
+print(static_dir)
 
 app = FastAPI()
 
