@@ -1,22 +1,30 @@
-# Usar imagem oficial do Python 3.12
-FROM python:3.12-alpine
+# Usar a imagem base Python
+FROM python:3.9-slim
 
-# Definir diretório de trabalho no container
+# Instalar as dependências do sistema (incluindo compiladores e bibliotecas)
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    gcc \
+    g++ \
+    libssl-dev \
+    libffi-dev \
+    python3-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Definir o diretório de trabalho
 WORKDIR /app
 
-# Copiar o arquivo de dependências para o container
+# Copiar os arquivos de dependências
 COPY requirements.txt .
 
-# Instalar dependências
-# RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install -r requirements.txt
+# Instalar dependências do Python
+RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
-
-# Copiar todos os arquivos da aplicação para o container
+# Copiar o restante da aplicação
 COPY . .
 
-# Expor a porta 8000
+# Expor a porta em que a aplicação irá rodar
 EXPOSE 8000
 
-# Comando para rodar a aplicação FastAPI com Uvicorn
+# Rodar a aplicação
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
