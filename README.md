@@ -16,4 +16,4 @@ Eu fiz alguns gráficos para entender a distribuição dos dados e algumas outra
 
 ![media movel](image.png)
 
-Depois disso parti para o pré-processamento dos dados, que consistiu em normalizar os dados e separar em treino e teste. Para isso, utilizei
+Depois disso parti para o pré-processamento dos dados, que consistiu em normalizar os dados e separar em treino e teste. Para fazer a normalização, eu utilizei a função MixMaxScaler da biblioteca `sklearn` para normalizar os dados entre 0 e 1.
