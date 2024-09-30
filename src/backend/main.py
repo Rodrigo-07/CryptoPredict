@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Request
-from routers import prediction, database
+from backend.routers import prediction, database
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
