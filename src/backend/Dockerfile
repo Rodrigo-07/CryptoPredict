@@ -10,8 +10,8 @@ COPY ./src/backend/requirements.txt /code/requirements.txt
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
 # Copiar o backend e o frontend para dentro do container
-COPY ./src/backend /code/backend
-COPY ./src/frontend /code/frontend
+COPY ./backend /code/backend
+COPY ../src/frontend /code/frontend
 
 # Expor a porta para rodar a aplicação
 EXPOSE 8000
