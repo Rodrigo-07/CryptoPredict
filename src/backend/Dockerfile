@@ -4,14 +4,14 @@ FROM python:3.10
 WORKDIR /code
 
 # Copiar os requirements para dentro do container
-COPY ./src/backend/requirements.txt /code/requirements.txt
+COPY ./backend/requirements.txt /code/requirements.txt
 
 # Instalar as dependências
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
 # Copiar o backend e o frontend para dentro do container
 COPY ./backend /code/backend
-COPY ../src/frontend /code/frontend
+COPY ./frontend /code/frontend
 
 # Expor a porta para rodar a aplicação
 EXPOSE 8000

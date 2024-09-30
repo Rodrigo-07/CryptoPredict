@@ -3,13 +3,14 @@ version: "3.8"
 services:
   backend:
     build:
-      context: ./backend  # Caminho correto para o backend
+      context: ./  # Definindo o contexto correto para o diretório src
+      dockerfile: ./src/backend/Dockerfile  # Usando o Dockerfile no backend
     container_name: fastapi-backend
     ports:
       - "8000:8000"  # Mapear a porta do container para o host
     volumes:
-      - ./backend:/code/backend  # Sincronizar o backend
-      - ../src/frontend:/code/frontend  # Sincronizar o frontend
+      - ./src/backend:/code/backend  # Sincronizar o backend
+      - ./src/frontend:/code/frontend  # Sincronizar o frontend
     environment:
       - MONGO_URI=mongodb://mongo:27017
     depends_on:
