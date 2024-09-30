@@ -16,7 +16,7 @@ Para obter os dados eu utilizei a biblioteca `yfinance`, com uma range de data d
 
 Eu fiz alguns gráficos para entender a distribuição dos dados e algumas outras análises, como a média móvel e a decomposição da série temporal.
 
-![media movel](image.png)
+![media movel](images_doc/image.png)
 
 Depois disso parti para o pré-processamento dos dados, que consistiu em normalizar os dados e separar em treino e teste. Para fazer a normalização, eu utilizei a função MixMaxScaler da biblioteca `sklearn` para normalizar os dados entre 0 e 1.
 
@@ -43,13 +43,13 @@ model.fit(x_train, y_train, epochs=25, batch_size=32)
 
 Com o modelo treinado, eu fiz a previsão dos dados de teste e plotei o gráfico para comparar com os dados reais.
 
-![alt text](image-1.png)
+![alt text](images_doc/image-1.png)
 
 Como podemos ver, o modelo conseguiu prever bem o comportamento da moeda e obteve um MSE de 66.6 no conjunto de teste.
 
 Apesar desse resultado, quando vamos prever o valor dos próximos, quando vamos prever o valor dos próximos dias ele não apresenta um resultado confiável e consistente.
 
-![alt text](image-2.png)
+![alt text](images_doc/image-2.png)
 
 Para facilitar testes eu criei uma classe chamada `CryptoPredicter` que encapsula o modelo e facilita a previsão de novos valores.
 
@@ -144,11 +144,11 @@ Como alguns dados começavam em datas diferentes, eu tive que fazer um tratament
 
 Para uma analise incial, eu plotei cada uma das features para entender a distribuição dos dados.
 
-![alt text](image-3.png)
+![alt text](images_doc/image-3.png)
 
 Nesses gráficos podemos ver que o preço do bitcoin e da NASDAQ Crypto tem uma correlação muito forte com o preço do SOLANA, o que é esperado, já que são criptomoedas. O VIX Index e o Crypto Fear & Greed Index também tem uma correlação, mas não tão forte. É possivel ver que os valores tendem a subir juntos ou descer juntos. Para entender melhor essa correlação, eu fiz uma matriz de correlação.
 
-![alt text](image-4.png)
+![alt text](images_doc/image-4.png)
 
 É possivel ver que quase todas as featurs tem uma correlação positiva com o preço do SOLANA, o que é esperado. A feature que tem a maior correlação é o valor das NASDAQ Crypto, com 0.9. Existe uma correlação negativa com o VIX Index, o que também é esperado, já que o VIX é um índice de volatilidade. Mesmo tendo uma correlação negativa, eu decidi manter essa feature, pois acredito que ela pode ser útil para o modelo.
 
@@ -171,7 +171,7 @@ Fazendo isso, eu percebi um problema, existia alguns dados da NASDAQ, NASDAQ Cry
 
 Segue um gráfico com o Dataframe final:
 
-![alt text](image-5.png)
+![alt text](images_doc/image-5.png)
 
 Tendo feito isso, eu partir para a criação do modelo. Eu utilizei o LSTM, com uma arquitetura mais complexa, para tentar capturar melhor os padrões dos dados. A arquitetura do modelo ficou assim:
 
@@ -206,7 +206,7 @@ model.fit(X_train, y_train, epochs=25, batch_size=16, verbose=1, validation_data
 
 Nessa arquitetura obtive um RSME de 0.0381, o que é um resultado muito bom. Com esse modelo treinado, eu fiz a previsão dos dados de teste e plotei o gráfico para comparar com os dados reais.
 
-![alt text](image-6.png)
+![alt text](images_doc/image-6.png)
 
 Para prever os próximos dias, eu utilizei uma abordagem parecida do modelo anterior, mas com as features adicionais.
 
@@ -244,7 +244,7 @@ Um problema disso que é como não temos os dados reais e de previsão dos proxi
 
 Aqui vai a previssão dos próximos 60 dias:
 
-![alt text](image-7.png)
+![alt text](images_doc/image-7.png)
 
 Eu também tentei fazer um modelo com o GRU e obteve um RSME DE 0.03201, com essa arquitetura:
 
@@ -278,7 +278,7 @@ model.fit(X_train, y_train, epochs=25, batch_size=16, verbose=1, validation_data
 
 Esse foi o resultado do GRU para previssão dos próximos 60 dias:
 
-![alt text](image-8.png)
+![alt text](images_doc/image-8.png)
 
 Um problema
 
