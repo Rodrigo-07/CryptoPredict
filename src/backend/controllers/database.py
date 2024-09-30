@@ -28,8 +28,14 @@ def read_logs():
     logs_collection = db['logs']
     
     logs = logs_collection.find()
+
+    # Converter os logs em uma lista de dicionários e transformar ObjectId em string
+    logs_list = []
     for log in logs:
-        print(log)
+        log['_id'] = str(log['_id'])  # Convertendo ObjectId para string
+        logs_list.append(log)
+
+    return logs_list
 
 def update_log(log_id, updated_data):
     db = get_database()

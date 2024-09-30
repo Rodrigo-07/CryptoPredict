@@ -7,7 +7,6 @@ from controllers.database import create_log, read_logs, update_log, delete_log, 
 
 router = APIRouter()
 
-# Pydantic models to validate input
 class LogModel(BaseModel):
     acao: str
     typo: str
@@ -18,13 +17,12 @@ class ModelRetrainModel(BaseModel):
     tipo_modelo: str
     rmse: float
     path: str
-    timestamp: Optional[datetime] = None
 
-# -------------------- Endpoints for Logs --------------------
 
 @router.post("/logs/", response_description="Create a new log")
 async def create_new_log(log: LogModel):
-    create_log(acao=log.acao, typo=log.typo, timestamp=log.timestamp)
+    timestamp_now = datetime.now()
+    create_log(acao=log.acao, typo=log.typo, timestamp=timestamp_now)
     return {"message": "Log criado com sucesso"}
 
 @router.get("/logs/", response_description="List all logs")
