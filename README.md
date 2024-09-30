@@ -132,4 +132,10 @@ class CryptoPredicter:
         plt.show()
 
 ```
+## Análise 2
 
+Para uma segunda análise, eu decidi tomar uma abordagem diferente e adicionar masi features para o modelo. Eu fiz porque estamos lidando com ações e a economia em si não segue um padrão tão liear, existe muitos outros fatores externos que podem influenciar o preço de uma ação. Então peguei alguns outros dados temporais externos para tentar melhorar a previsão.
+
+As features que eu adicionei foram: preço do bitcoin, preço da NASDAQ e NASDAQ Crypto, Crypto Fear & Greed Index, VIX Index, e o preço da moeda em si, no caso SOLANA.
+
+Para obter esses dados, grande parte deles eu utilizei a biblioteca `yfinance`, mas para o Crypto Fear & Greed Index eu utilizei a API do site `alternative.me`.
