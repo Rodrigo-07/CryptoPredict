@@ -3,18 +3,18 @@ version: "3.8"
 services:
   backend:
     build:
-      context: ./  # Definindo o contexto correto para o diretório src
-      dockerfile: ./src/backend/Dockerfile  # Usando o Dockerfile no backend
+      context: ./  # O contexto agora é a raiz do diretório src
+      dockerfile: ./backend/Dockerfile  # O Dockerfile está na pasta backend
     container_name: fastapi-backend
     ports:
-      - "8000:8000"  # Mapear a porta do container para o host
+      - "8000:8000"
     volumes:
-      - ./src/backend:/code/backend  # Sincronizar o backend
-      - ./src/frontend:/code/frontend  # Sincronizar o frontend
+      - ./backend:/code/backend  # Volume para o backend
+      - ./frontend:/code/frontend  # Volume para o frontend
     environment:
       - MONGO_URI=mongodb://mongo:27017
     depends_on:
-      - mongo  # Garantir que o MongoDB esteja rodando antes de iniciar o backend
+      - mongo
     networks:
       - app-network
 
@@ -22,15 +22,15 @@ services:
     image: mongo:latest
     container_name: mongodb
     ports:
-      - "27017:27017"  # Porta do MongoDB
+      - "27017:27017"
     volumes:
-      - mongodbdata:/data/db  # Volume para persistir os dados do MongoDB
+      - mongodbdata:/data/db
     networks:
       - app-network
 
 volumes:
-  mongodbdata:  # Volume para o MongoDB
+  mongodbdata:
 
 networks:
-  app-network:  # Rede compartilhada entre o backend e o MongoDB
+  app-network:
     driver: bridge
