@@ -11,10 +11,12 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dropout, Dense
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.callbacks import EarlyStopping
+import os
 
+model_path = os.path.join(os.getcwd(), "backend", 'controllers', 'model_new_feat_lstm.h5')
+df_path = os.path.join(os.getcwd(), "backend", 'controllers', 'df_feat_not_scaled.csv')
 
-
-def predict_lstm(next_days, coin, model_path='model_new_feat_lstm.h5'):
+def predict_lstm(next_days, coin, model_path=model_path):
     # Carregar o modelo salvo
     model = load_model(model_path)
 
@@ -22,7 +24,7 @@ def predict_lstm(next_days, coin, model_path='model_new_feat_lstm.h5'):
     prediction_days = next_days
 
     # Carregar o dataset com as datas
-    df = pd.read_csv("df_feat_not_scaled.csv", parse_dates=['Date'], index_col='Date')
+    df = pd.read_csv(df_path, parse_dates=['Date'], index_col='Date')
     
     # Criar um scaler individual para cada coluna
     columns_to_scale = ['BTC Price', 'Nasdaq Price', 'Nasdaq Crypto Price', 'Crypto Fear & Greed Index', 'VIX Index', 'Solana Price']
