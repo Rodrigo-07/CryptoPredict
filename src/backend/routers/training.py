@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from backend.controllers.lstm_model import retrain_lstm
+from controllers.lstm_model import retrain_lstm
 
 router = APIRouter()
 
