@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: ./backend  # Caminho para o Dockerfile do backend
+    container_name: fastapi-backend
+    ports:
+      - "8000:8000"  # Mapear a porta do container para o host
+    volumes:
+      - ./backend:/app  # Sincronizar o código do host com o container
+    environment:
+      - MONGO_URI=mongodb://mongo:27017
+    depends_on:
+      - mongo  # Garantir que o MongoDB esteja rodando antes de iniciar o backend
+    networks:
+      - app-network
+
+  mongo:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"  # Porta do MongoDB
+    volumes:
+      - mongodbdata:/data/db  # Volume para persistir os dados do MongoDB
+    networks:
+      - app-network
+
+volumes:
+  mongodbdata:  # Volume para o MongoDB
+
+networks:
+  app-network:  # Rede compartilhada entre o backend e o MongoDB
+    driver: bridge
