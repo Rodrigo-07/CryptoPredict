@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-from .prediction import router as prediction_router
-from .database import router as database_router
+from backend.routers.prediction import router as prediction_router
+from backend.routers.database import router as database_router
 
 router = APIRouter()
 

@@ -4,7 +4,7 @@ import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 from datetime import timedelta
 from tensorflow.keras.models import load_model
-from .database import create_log
+from backend.controllers.database import create_log
 
 
 

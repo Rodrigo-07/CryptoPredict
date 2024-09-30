@@ -3,7 +3,7 @@ from pydantic import BaseModel
 from bson import ObjectId
 from typing import Optional, List
 from datetime import datetime
-from controllers.database import create_log, read_logs, update_log, delete_log, create_model_retrain, read_model_retrains, update_model_retrain, delete_model_retrain
+from backend.controllers.database import create_log, read_logs, update_log, delete_log, create_model_retrain, read_model_retrains, update_model_retrain, delete_model_retrain
 
 router = APIRouter()
 

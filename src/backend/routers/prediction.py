@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Query
-from controllers.lstm_model import predict_lstm
-from controllers.gru_model import predict_gru
+from backend.controllers.lstm_model import predict_lstm
+from backend.controllers.gru_model import predict_gru
 from pydantic import BaseModel
 
 router = APIRouter()
