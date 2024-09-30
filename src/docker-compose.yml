@@ -3,7 +3,7 @@ version: "3.8"
 services:
   backend:
     build:
-      context: ./  # O contexto agora é a raiz do diretório src
+      context: .  # O contexto agora é a raiz do diretório src
       dockerfile: ./backend/Dockerfile  # O Dockerfile está na pasta backend
     container_name: fastapi-backend
     ports:
