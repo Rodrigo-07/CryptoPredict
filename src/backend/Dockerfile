@@ -1,30 +1,19 @@
-# Usar a imagem base Python
-FROM python:3.9-slim
+FROM python:3.12
 
-# Instalar as dependências do sistema (incluindo compiladores e bibliotecas)
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    gcc \
-    g++ \
-    libssl-dev \
-    libffi-dev \
-    python3-dev \
-    && rm -rf /var/lib/apt/lists/*
+# Diretorio de trabalho do containeir
+WORKDIR /code
 
-# Definir o diretório de trabalho
-WORKDIR /app
+# Copiar os requirements pra dentro do container
+COPY ./requirements.txt /code/requirements.txt
 
-# Copiar os arquivos de dependências
-COPY requirements.txt .
+# Instalar as dependências
+RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
-# Instalar dependências do Python
-RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
+# Copiar todo conteudo para dentro do code
+COPY . /code
 
-# Copiar o restante da aplicação
-COPY . .
-
-# Expor a porta em que a aplicação irá rodar
+# Porta que vai rodar a aplicação
 EXPOSE 8000
 
-# Rodar a aplicação
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Rodar aplicação
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
